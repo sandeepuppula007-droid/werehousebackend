@@ -1,0 +1,22 @@
+image: maven:3.9.6-eclipse-temurin-17
+
+pipelines:
+  branches:
+    main:
+      - step:
+          name: Build Spring Boot JAR
+          caches:
+            - maven
+          script:
+            - mvn clean package -DskipTests
+          artifacts:
+            - target/*.jar
+
+      - step:
+          name: Build and Push Docker Image
+          services:
+            - docker
+          script:
+            - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+            - docker build -t $DOCKER_USERNAME/warehouse-system:latest .
+            - docker push $DOCKER_USERNAME/warehouse-system:latest

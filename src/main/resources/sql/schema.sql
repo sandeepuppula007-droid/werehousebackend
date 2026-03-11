@@ -1,0 +1,75 @@
+---- ================================
+----   WAREHOUSE MANAGEMENT DATABASE
+----   PostgreSQL SQL Schema + Inserts
+---- ================================
+
+---- Create users table
+--CREATE TABLE IF NOT EXISTS users (
+--    id BIGSERIAL PRIMARY KEY,
+--    username VARCHAR(255) UNIQUE NOT NULL,
+--    password VARCHAR(255) NOT NULL,
+--    role VARCHAR(50) NOT NULL
+--);
+--
+---- Insert sample users (password is 'password123' encrypted with BCrypt)
+--INSERT INTO users (username, password) VALUES
+--('admin', '$2a$12$oCuyCqMoMo8x6tviWSnMfOLC6ZQWlhkRFXJzLT5e/iJtegGADmoiq','ADMIN'),
+--('user1', '$2a$12$oCuyCqMoMo8x6tviWSnMfOLC6ZQWlhkRFXJzLT5e/iJtegGADmoiq','USER'),
+--('user2', '$2a$12$oCuyCqMoMo8x6tviWSnMfOLC6ZQWlhkRFXJzLT5e/iJtegGADmoiq','USER')
+
+
+---- DROP TABLES (Only if needed)
+-- DROP TABLE stock_out;
+-- DROP TABLE stock_in;
+-- DROP TABLE product;
+-- DROP TABLE warehouse;
+--
+---- ================================
+---- CREATE TABLES
+---- ================================
+--
+--CREATE TABLE product (
+--    product_id SERIAL PRIMARY KEY,
+--    name VARCHAR(255)
+--);
+--
+--CREATE TABLE stock_in (
+--    id SERIAL PRIMARY KEY,
+--    quantity INTEGER,
+--    received_from VARCHAR(255),
+--    in_date TIMESTAMP,
+--    product_id BIGINT,
+--    CONSTRAINT fk_stockin_product
+--        FOREIGN KEY (product_id) REFERENCES product(product_id)
+--);
+--
+--CREATE TABLE stock_out (
+--    id SERIAL PRIMARY KEY,
+--    quantity INTEGER,
+--    given_to VARCHAR(255),
+--    out_date TIMESTAMP,
+--    product_id BIGINT,
+--    CONSTRAINT fk_stockout_product
+--        FOREIGN KEY (product_id) REFERENCES product(product_id)
+--);
+--
+---- ================================
+---- INSERT SAMPLE DATA
+---- ================================
+
+---- Insert Products
+--INSERT INTO product (name, warehouse_id) VALUES
+--('Mobile Phones');
+
+---- Insert Stock IN
+--INSERT INTO stock_in (quantity, received_from, in_date, product_id) VALUES
+--(50, 'Supplier A', NOW(), 1),
+--(20, 'Supplier B', NOW(), 2),
+--(100, 'Supplier C', NOW(), 3);
+--
+---- Insert Stock OUT
+--INSERT INTO stock_out (quantity, given_to, out_date, product_id) VALUES
+--(10, 'Customer X', NOW(), 1),
+--(5, 'Customer Y', NOW(), 2),
+--(15, 'Customer Z', NOW(), 3);
+--
