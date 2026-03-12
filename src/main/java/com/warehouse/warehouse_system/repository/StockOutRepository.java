@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public interface StockOutRepository extends JpaRepository<StockOut, Integer> {
-    List<StockOut> findByProductId(Long productId);
     List<StockOut> findByProductIdOrderByOutDateDesc(Long productId);
     
     @Query("SELECT SUM(s.quantity) FROM StockOut s WHERE s.productId = ?1")

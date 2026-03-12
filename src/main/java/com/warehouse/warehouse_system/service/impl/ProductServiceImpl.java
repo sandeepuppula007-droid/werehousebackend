@@ -50,7 +50,6 @@ public class ProductServiceImpl implements ProductService {
         if (existing.isPresent()) {
             Product existingProduct = existing.get();
             existingProduct.setName(product.getName());
-            existingProduct.setWarehouseId(product.getWarehouseId());
             return productRepository.save(existingProduct);
         }
         return null;
@@ -102,7 +101,6 @@ public class ProductServiceImpl implements ProductService {
         Map<String, Object> result = new HashMap<>();
         result.put("productId", product.getProductId());
         result.put("name", product.getName());
-        result.put("warehouseId", product.getWarehouseId());
         result.put("totalIn", totalIn != null ? totalIn : 0);
         result.put("totalOut", totalOut != null ? totalOut : 0);
         result.put("currentStock", currentStock);

@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    List<Product> findByWarehouseId(Long warehouseId);
     Page<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
     
     @Query("SELECT p.productId, p.name, " +
